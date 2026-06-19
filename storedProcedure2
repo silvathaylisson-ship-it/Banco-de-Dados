@@ -1,15 +1,20 @@
 
-CREATE TABLE EMPLOYEE (
-  empId INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  dept TEXT NOT NULL
-);
 
 -- insert
-INSERT INTO EMPLOYEE VALUES (0001, 'Clark', 'Sales');
-INSERT INTO EMPLOYEE VALUES (0002, 'Dave', 'Accounting');
-INSERT INTO EMPLOYEE VALUES (0003, 'Ava', 'Sales');
+INSERT INTO EMPLOYEE VALUES (1, 'Clark', 'Sales');
+INSERT INTO EMPLOYEE VALUES (2, 'Dave', 'Accounting');
+INSERT INTO EMPLOYEE VALUES (3, 'Ava', 'Sales');
 
--- fetch 
-SELECT * FROM EMPLOYEE WHERE dept = 'Sales';
+-- teste 1: WHERE empId = 2 (id existente)
+SELECT * FROM EMPLOYEE WHERE empId = 2;
+
+-- saída:
+-- 2 | Dave | Accounting
+
+
+-- teste 2: WHERE empId = 3 (id existente na tabela)
+SELECT * FROM EMPLOYEE WHERE empId = 3;
+
+-- saída:
+-- 3 | Ava | Sales
 
