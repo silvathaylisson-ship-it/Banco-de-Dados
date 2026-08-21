@@ -1,17 +1,23 @@
-SELECT * FROM Clientes;
+-- Habilita validação de chaves estrangeiras no SQLite (execute a cada sessão)
+PRAGMA foreign_keys = ON;
 
-CREATE TABLE Clientes (
-    ID INTEGER PRIMARY KEY,
-    nomeCliente VARCHAR(255),
-    emailCliente VARCHAR(255)
+BEGIN TRANSACTION;
+
+-- Tabela de clientes
+CREATE TABLE IF NOT EXISTS Clientes (
+  ID INTEGER PRIMARY KEY,     -- INTEGER PRIMARY KEY em SQLite vira o rowid (auto-increment)
+  nomeCliente TEXT NOT NULL,
+  emailCliente TEXT
 );
 
-CREATE TABLE Compras (
-    CompraID INTEGER PRIMARY KEY,
-    ClienteID INTEGER,
-    NomeLivro VARCHAR(255),
-    FOREIGN KEY (ClienteID) REFERENCES Clientes(ID)
+-- Tabela de compras, referenciando Clientes(ID)
+CREATE TABLE IF NOT EXISTS Compras (
+  CompraID INTEGER PRIMARY KEY,
+  ClienteID INTEGER NOT NULL,
+  NomeLivro TEXT,
+  FOREIGN KEY (ClienteID) REFERENCES Clientes(ID)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION
 );
 
-SELECT * FROM Clientes;
-SELECT * FROM Compras;
+COMMIT;
